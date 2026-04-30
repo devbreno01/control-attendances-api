@@ -16,12 +16,14 @@ class UserService {
     }
 
     public function create(UserDto $dto){
+        
         $user = self::repository()->create([
             "name" => $dto->name,
             "email" => $dto->email,
             "password" => $dto->password
         ]);
-        return $user;
+        return response()->json(["message" => "Usuário criado com sucesso",
+                                "data" => $user]);
     }
 
 }

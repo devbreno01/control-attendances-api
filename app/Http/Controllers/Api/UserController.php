@@ -10,11 +10,17 @@ use App\Services\UserService;
 
 class UserController extends Controller
 {
-    private UserService $userService;
+    private $userService;
+
+    public function __construct(UserService $service)
+    {
+       $this->userService = $service;
+    }
 
     public function store(UserRequest $request)
     {
         $dto = UserDto::fromRequest($request);
+
         return $this->userService->create($dto);
     }
 }
