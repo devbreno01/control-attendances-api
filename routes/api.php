@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SectorController;
+use App\Http\Controllers\Api\PriorityController;
+
+
 Route::post("/login", [AuthController::class, 'login']);
 
 
@@ -27,5 +30,12 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::post("/sectors", [SectorController::class, 'store']);
     Route::put("/sector/{id}", [SectorController::class, 'update']);
     Route::delete("/sector/{id}", [SectorController::class, 'delete']);
+
+
+    Route::get("/priorities", [PriorityController::class, 'get']);
+    Route::get("/priority/{id}", [PriorityController::class, 'getById']);
+    Route::post("/priorities", [PriorityController::class, 'store']);
+    Route::put("/priority/{id}", [PriorityController::class, 'update']);
+    Route::delete("/priority/{id}", [PriorityController::class, 'delete']);
 
 });
