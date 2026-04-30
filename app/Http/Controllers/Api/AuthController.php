@@ -11,12 +11,13 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $dto = UserDto::fromRequest($request);
-        
+
+
         if (Auth::attempt([
-            'email' => $dto->email,
-            'password' => $dto->password
-        ])) {
+            'email' => $request->email,
+            'password' => $request->password
+        ]))
+        {
 
             $user = Auth::user();
 
