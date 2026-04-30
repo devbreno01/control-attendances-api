@@ -11,12 +11,12 @@ class UserService {
     }
 
     public function getAll(){
-        $users = self::repository()->all();
-        return $users;
+         return self::repository()->all();
+        
     }
 
     public function create(UserDto $dto){
-        
+
         $user = self::repository()->create([
             "name" => $dto->name,
             "email" => $dto->email,

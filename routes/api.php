@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AuthController;
-
+use App\Http\Controllers\Api\SectorController;
 Route::post("/login", [AuthController::class, 'login']);
 
 
@@ -19,6 +19,13 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::get("/testeAuth", function () {
-        return response()->json(["message" => "Autenticado"]); 
+        return response()->json(["message" => "Autenticado"]);
     });
+
+    Route::get("/sectors", [SectorController::class, 'get']);
+    Route::get("/sector/{id}", [SectorController::class, 'getById']);
+    Route::post("/sectors", [SectorController::class, 'store']);
+    Route::put("/sector/{id}", [SectorController::class, 'update']);
+    Route::delete("/sector/{id}", [SectorController::class, 'delete']);
+
 });
