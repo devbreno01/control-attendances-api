@@ -161,7 +161,9 @@ class AttendanceService
         ]);
     }
 
-
+    public function listAttendances(){
+        
+    }
     private function getStatusId(string $statusName): int
     {
 
