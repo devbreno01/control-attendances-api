@@ -19,7 +19,7 @@ class AttendanceController extends Controller
     public function start(int $ticketId){
         try{
             $start = $this->attendanceService->start($ticketId);
-            return response()->json(["message" => "Chamado iniciado",
+            return response()->json(["message" => "Atendimento iniciado",
                                     "data" => $start]);
         }catch(\Exception $e){
             return response()->json([
@@ -31,7 +31,7 @@ class AttendanceController extends Controller
     public function pause(int $attendanceId){
         try{
             $pause = $this->attendanceService->pause($attendanceId);
-            return response()->json(["message" => "Chamado pausado",
+            return response()->json(["message" => "Atendimento pausado",
                                     "data" => $pause]);
         }catch(\Exception $e){
             return response()->json([
@@ -43,7 +43,7 @@ class AttendanceController extends Controller
     public function resume(int $attendanceId){
         try{
             $resume = $this->attendanceService->resume($attendanceId);
-            return response()->json(["message" => "Chamado aberto novamente",
+            return response()->json(["message" => "Atendimento aberto novamente",
                                     "data" => $resume]);
         }catch(\Exception $e){
             return response()->json([
@@ -56,7 +56,7 @@ class AttendanceController extends Controller
     public function finish(int $attendanceId, FinishAttendanceRequest $request){
         try{
             $finish = $this->attendanceService->finish($attendanceId,$request->solution);
-            return response()->json(["message" => "Chamado finalizado",
+            return response()->json(["message" => "Atendimento finalizado",
                                     "data" => $finish]);
         }catch(\Exception $e){
             return response()->json([
@@ -69,7 +69,7 @@ class AttendanceController extends Controller
         try{
             $list = $this->attendanceService->listAttendances();
 
-            return response()->json(["message" => "Listagem de chamados",
+            return response()->json(["message" => "Listagem de atendimentos",
                                     "data" => $list ]);
         }catch(\Exception $e){
             return response()->json([
@@ -82,7 +82,7 @@ class AttendanceController extends Controller
         try{
             $list = $this->attendanceService->listAttendancesById($id);
 
-            return response()->json(["message" => "Listagem de um chamado",
+            return response()->json(["message" => "Listagem de um atendimento",
                                     "data" => $list ]);
         }catch(\Exception $e){
             return response()->json([
@@ -96,7 +96,7 @@ class AttendanceController extends Controller
         try{
             $average_time = $this->attendanceService->getAvgTime();
 
-            return response()->json(["message" => "Tempo médio de chamado",
+            return response()->json(["message" => "Tempo médio de atendimento",
                                     "tempo" => $average_time]);
         }catch(\Exception $e){
             return response()->json([
