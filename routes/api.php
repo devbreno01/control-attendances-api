@@ -47,15 +47,16 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::put("/ticket/{id}", [TicketController::class, 'update']);
     Route::delete("/ticket/{id}", [TicketController::class, 'delete']);
 
-    //POST /tickets/{ticket}/attendances
-    //PATCH /attendances/{attendance}/pause
-    //PATCH /attendances/{attendance}/resume
-    //PATCH /attendances/{attendance}/finish
 
     Route::post("/tickets/{ticketId}/attendances", [AttendanceController::class, 'start']);
     Route::patch("/attendances/{attendanceId}/pause", [AttendanceController::class, 'pause']);
     Route::patch("/attendances/{attendanceId}/resume", [AttendanceController::class, 'resume']);
     Route::patch("/attendances/{attendanceId}/finish", [AttendanceController::class, 'finish']);
+
+    //listagem chamados
+    Route::get("/attendances", [AttendanceController::class, 'get']);
+    Route::get("/attendances/{id}", [AttendanceController::class, 'getById']);
+
 
 
 });

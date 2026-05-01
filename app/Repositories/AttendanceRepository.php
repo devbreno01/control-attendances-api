@@ -36,7 +36,7 @@ class AttendanceRepository extends AbstractRepository {
 
 
      public function listAttendancesById(int $tenant_id, int $id){
-         $sql = "
+        $sql = '
             SELECT
                 tic.title as ticket_title,
                 tic.description as ticket_description,
@@ -54,8 +54,8 @@ class AttendanceRepository extends AbstractRepository {
             INNER JOIN statuses sta
                 ON tic.status_id = sta.id
             WHERE att.tenant_id = ?
-            AND att.id
-        ";
+            AND att.id = ?
+        ';
 
         $result = DB::select($sql, [$tenant_id, $id]);
         return collect($result);

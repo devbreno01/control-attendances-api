@@ -65,5 +65,31 @@ class AttendanceController extends Controller
         }
     }
 
+    public function get(){
+        try{
+            $list = $this->attendanceService->listAttendances();
+
+            return response()->json(["message" => "Listagem de chamados",
+                                    "data" => $list ]);
+        }catch(\Exception $e){
+            return response()->json([
+                "message" => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getById(int $id){
+        try{
+            $list = $this->attendanceService->listAttendancesById($id);
+
+            return response()->json(["message" => "Listagem de um chamado",
+                                    "data" => $list ]);
+        }catch(\Exception $e){
+            return response()->json([
+                "message" => $e->getMessage()
+            ], 500);
+        }
+    }
+
 
 }

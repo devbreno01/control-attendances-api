@@ -8,6 +8,7 @@ use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Status;
+use App\Repositories\AttendanceRepository;
 use Exception;
 
 class AttendanceService
@@ -18,6 +19,11 @@ class AttendanceService
     {
         $this->tenant_id = Auth::user()->tenant_id;
     }
+
+    private static function repository(){
+        return new AttendanceRepository;
+    }
+
     //start chamado
     public function start(int $ticketId): Attendance
     {
@@ -162,8 +168,13 @@ class AttendanceService
     }
 
     public function listAttendances(){
-        
+        return self::repository()->listAttendances($this->tenant_id);
     }
+
+    public function listAttendancesById(int $id){
+        return self::repository()->listAttendancesById($this->tenant_id, $id);
+    }
+    
     private function getStatusId(string $statusName): int
     {
 
