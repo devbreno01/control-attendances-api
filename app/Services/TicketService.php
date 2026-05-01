@@ -43,9 +43,9 @@ class TicketService{
             throw new Exception("Prioridade associada não existe! Por favor, verifique e tente novamente");
         }
 
-        $status = DB::table('statuses')->where('id', '=' , $dto->status_id)->first();
+        $status = DB::table('statuses')->where('name', 'ILIKE' , '%Aberto%')->first();
         if(!$status){
-            throw new Exception("Status associado não existe! Por favor, verifique e tente novamente");
+            throw new Exception("Erro ao abrir chamado, tente novamente");
         }
 
 
@@ -54,7 +54,7 @@ class TicketService{
             "title" => $dto->title,
             "description" => $dto->description,
             "priority_id" => $dto->priority_id,
-            "status_id" => $dto->status_id,
+            "status_id" => $status->id,
             "sector_id" => $dto->sector_id
         ]);
 

@@ -10,7 +10,6 @@ class TicketDto {
         public string $description,
         public int $sector_id,
         public int $priority_id,
-        public int $status_id,
     ) {}
 
     public static function fromRequest(TicketRequest $request): self
@@ -20,7 +19,6 @@ class TicketDto {
             description: $request->validated('description'),
             sector_id: $request->validated('sector_id'),
             priority_id: $request->validated('priority_id'),
-            status_id: $request->validated('status_id')
         );
     }
 }

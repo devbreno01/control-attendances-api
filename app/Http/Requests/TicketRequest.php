@@ -26,8 +26,7 @@ class TicketRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'required|string',
             'sector_id' => 'required|integer',
-            'priority_id' => 'required|integer',
-            'status_id' => 'required|integer'
+            'priority_id' => 'required|integer'
         ];
     }
 }
