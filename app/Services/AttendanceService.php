@@ -152,7 +152,7 @@ class AttendanceService
 
     private function getStatusId(string $statusName): int
     {
-        
+       
         return Status::where('name', $statusName)->value('id');
     }
 }
