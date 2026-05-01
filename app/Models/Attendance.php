@@ -12,7 +12,9 @@ class Attendance extends BaseModel
         "tenant_id",
         "ticket_id",
         "user_id",
-        "status"
+        "status",
+        "started_at",
+        "ended_at"
     ];
 
     public function tenants()

@@ -123,7 +123,7 @@ class AttendanceService
 
             $attendance->update([
                 'status' => 'finished',
-                'finished_at' => now(),
+                'ended_at' => now(),
                 'solution' => $solution,
             ]);
 
@@ -152,7 +152,7 @@ class AttendanceService
 
     private function getStatusId(string $statusName): int
     {
-       
+
         return Status::where('name', $statusName)->value('id');
     }
 }
