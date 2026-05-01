@@ -6,25 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('attendance_events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tenant_id')->constrained('tenants')->onDelete('cascade');
 
-            $table->foreignId('ticket_id')->constrained('tickets')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('attendance_id')
+                ->constrained('attendances')
+                ->cascadeOnDelete();
 
+            $table->enum('type', [
+                'start',
+                'pause',
+                'resume',
+                'finish'
+            ]);
 
-            $table->dateTime('started_at')->nullable();
-            $table->dateTime('ended_at')->nullable();
+            $table->dateTime('occurred_at');
 
-
-
-            $table->text('solution')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        //
     }
 };

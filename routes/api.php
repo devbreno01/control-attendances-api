@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SectorController;
 use App\Http\Controllers\Api\PriorityController;
-
+use App\Http\Controllers\Api\TicketController;
 
 Route::post("/login", [AuthController::class, 'login']);
 
@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
         return response()->json(["message" => "Autenticado"]);
     });
 
+
     Route::get("/sectors", [SectorController::class, 'get']);
     Route::get("/sector/{id}", [SectorController::class, 'getById']);
     Route::post("/sectors", [SectorController::class, 'store']);
@@ -37,5 +38,13 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::post("/priorities", [PriorityController::class, 'store']);
     Route::put("/priority/{id}", [PriorityController::class, 'update']);
     Route::delete("/priority/{id}", [PriorityController::class, 'delete']);
+
+
+    Route::get("/tickets", [TicketController::class, 'get']);
+    Route::get("/ticket/{id}", [TicketController::class, 'getById']);
+    Route::post("/tickets", [TicketController::class, 'store']);
+    Route::put("/ticket/{id}", [TicketController::class, 'update']);
+    Route::delete("/ticket/{id}", [TicketController::class, 'delete']);
+
 
 });

@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends BaseModel
 {
     protected $table = "tickets";
+    
+    protected $fillable = [
+        "tenant_id" ,
+        "title",
+        "description",
+        "sector_id",
+        "priority_id",
+        "status_id",
+
+    ];
 
     public function tenants()
     {

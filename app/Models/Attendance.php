@@ -8,6 +8,12 @@ class Attendance extends BaseModel
 {
     protected $table = "attendances";
 
+    protected $fillable = [
+        "tenant_id",
+        "ticket_id",
+        "user_id"
+    ];
+
     public function tenants()
     {
         return $this->belongsTo(Tenant::class);
