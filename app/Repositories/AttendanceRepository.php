@@ -15,7 +15,12 @@ class AttendanceRepository extends AbstractRepository {
                 att.status as live_status,
                 sec.name as sector,
                 pri.name as priority,
-                (att.ended_at - att.started_at) as total_attendance_time
+                (att.ended_at - att.started_at) as total_attendance_time,
+                CASE
+                    WHEN (att.ended_at - att.started_at) > pri.estimated_time
+                    THEN true
+                    ELSE false
+                END as exceeded_time
             FROM attendances att
             INNER JOIN tickets tic
                 ON att.ticket_id = tic.id

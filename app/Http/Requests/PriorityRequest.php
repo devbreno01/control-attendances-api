@@ -24,7 +24,7 @@ class PriorityRequest extends FormRequest
     {
         return [
             'name' => 'required| string',
-            'estimated_hours' => 'required| integer'
+            'estimated_time' => 'required| string'
         ];
     }
 }

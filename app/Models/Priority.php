@@ -11,10 +11,10 @@ class Priority extends BaseModel
     protected $fillable = [
         "tenant_id" ,
         "name",
-        "estimated_hours"
+        "estimated_time"
     ];
 
-    
+
     public function tenants()
     {
         return $this->belongsTo(Tenant::class);

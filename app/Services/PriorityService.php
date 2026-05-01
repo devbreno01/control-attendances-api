@@ -30,14 +30,10 @@ class PriorityService{
 
     public function store(PriorityDto $dto){
 
-        if($dto->estimated_hours <= 0  ){
-            throw new Exception("A hora não pode ser igual ou menor a 0");
-        }
-
         $priority = self::repository()->create([
             "tenant_id" => $this->tenant_id,
             "name" => $dto->name,
-            "estimated_hours" => $dto->estimated_hours
+            "estimated_time" => $dto->estimated_time
         ]);
 
         return $priority;
