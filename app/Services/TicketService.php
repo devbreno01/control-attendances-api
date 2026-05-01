@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Repositories\TicketRepository;
 use App\DTO\TicketDto;
 use Error;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -34,17 +35,17 @@ class TicketService{
         $sector = DB::table('sectors')->where('id', '=' , $dto->sector_id)->first();
 
         if(!$sector){
-            throw new Error("Setor associado não existe! Por favor, verifique e tente novamente");
+            throw new Exception("Setor associado não existe! Por favor, verifique e tente novamente");
         }
 
         $priority = DB::table('priorities')->where('id', '=' , $dto->priority_id)->first();
         if(!$priority){
-            throw new Error("Prioridade associada não existe! Por favor, verifique e tente novamente");
+            throw new Exception("Prioridade associada não existe! Por favor, verifique e tente novamente");
         }
 
         $status = DB::table('statuses')->where('id', '=' , $dto->status_id)->first();
         if(!$status){
-            throw new Error("Status associado não existe! Por favor, verifique e tente novamente");
+            throw new Exception("Status associado não existe! Por favor, verifique e tente novamente");
         }
 
 

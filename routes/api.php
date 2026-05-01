@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SectorController;
 use App\Http\Controllers\Api\PriorityController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\AttendanceController;
 
 Route::post("/login", [AuthController::class, 'login']);
 
@@ -45,6 +46,16 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::post("/tickets", [TicketController::class, 'store']);
     Route::put("/ticket/{id}", [TicketController::class, 'update']);
     Route::delete("/ticket/{id}", [TicketController::class, 'delete']);
+
+    //POST /tickets/{ticket}/attendances
+    //PATCH /attendances/{attendance}/pause
+    //PATCH /attendances/{attendance}/resume
+    //PATCH /attendances/{attendance}/finish
+
+    Route::post("/tickets/{ticketId}/attendances", [AttendanceController::class, 'start']);
+    Route::patch("/attendances/{attendanceId}/pause", [AttendanceController::class, 'pause']);
+    Route::patch("/attendances/{attendanceId}/resume", [AttendanceController::class, 'resume']);
+    Route::patch("/attendances/{attendanceId}/finish", [AttendanceController::class, 'finish']);
 
 
 });

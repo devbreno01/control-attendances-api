@@ -11,7 +11,8 @@ class Attendance extends BaseModel
     protected $fillable = [
         "tenant_id",
         "ticket_id",
-        "user_id"
+        "user_id",
+        "status"
     ];
 
     public function tenants()

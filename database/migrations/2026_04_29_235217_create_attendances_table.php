@@ -22,7 +22,11 @@ return new class extends Migration
             $table->dateTime('started_at')->nullable();
             $table->dateTime('ended_at')->nullable();
 
-
+            $table->enum('status', [
+                'in_progress',
+                'paused',
+                'finished'
+            ]);
 
             $table->text('solution')->nullable();
             $table->timestamps();
