@@ -22,7 +22,16 @@ class AttendanceService
     public function start(int $ticketId): Attendance
     {
 
+
         return DB::transaction(function () use ($ticketId) {
+
+            $attendantIsBusy = Attendance::where('user_id', Auth::id())
+                             ->where('status', 'in_progress')
+                             ->exists();
+
+            if ($attendantIsBusy) {
+                throw new Exception('Você já possui um atendimento em andamento.');
+            }
 
             $ticket = Ticket::with('status')->findOrFail($ticketId);
 
@@ -32,6 +41,7 @@ class AttendanceService
             }
 
             // Regra: não pode ter atendimento ativo
+            //!=
             $hasOpen = $ticket->attendances()
                 ->where('status', '!=', 'finished')
                 ->exists();
@@ -39,6 +49,8 @@ class AttendanceService
             if ($hasOpen) {
                 throw new Exception('Já existe atendimento em andamento.');
             }
+
+
             $user_id = Auth::user()->id;
             $attendance = Attendance::create([
                 'tenant_id' =>$this->tenant_id,
@@ -67,7 +79,7 @@ class AttendanceService
                 throw new Exception('Atendimento não pode ser pausado.');
             }
 
-            if ($attendance->finished_at) {
+            if ($attendance->ended_at) {
                 throw new Exception('Atendimento já finalizado.');
             }
 
@@ -117,7 +129,7 @@ class AttendanceService
                 throw new Exception('Atendimento não pode ser finalizado.');
             }
 
-            if(empty($solution)){
+            if(trim($solution) === ''){
                 throw new Exception("Para finalizar um chamado é preciso que disponibilize a solução do mesmo");
             }
 
