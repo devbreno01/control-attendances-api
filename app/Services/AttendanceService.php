@@ -174,7 +174,11 @@ class AttendanceService
     public function listAttendancesById(int $id){
         return self::repository()->listAttendancesById($this->tenant_id, $id);
     }
-    
+
+    public function getAvgTime(){
+        return self::repository()->getAvgTime(); 
+    }
+
     private function getStatusId(string $statusName): int
     {
 

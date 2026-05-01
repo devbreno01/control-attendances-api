@@ -55,7 +55,9 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
 
     //listagem chamados
     Route::get("/attendances", [AttendanceController::class, 'get']);
+    Route::get("/attendances/average", [AttendanceController::class, 'averageTime']);
     Route::get("/attendances/{id}", [AttendanceController::class, 'getById']);
+
 
 
 

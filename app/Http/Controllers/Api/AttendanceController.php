@@ -91,5 +91,19 @@ class AttendanceController extends Controller
         }
     }
 
+    public function averageTime(){
+
+        try{
+            $average_time = $this->attendanceService->getAvgTime();
+
+            return response()->json(["message" => "Tempo médio de chamado",
+                                    "tempo" => $average_time]);
+        }catch(\Exception $e){
+            return response()->json([
+                "message" => $e->getMessage()
+            ], 500);
+        }
+    }
+
 
 }

@@ -61,4 +61,12 @@ class AttendanceRepository extends AbstractRepository {
         return collect($result);
 
     }
+
+
+    public function getAvgTime(){
+        return $avgTime = DB::table('attendances')
+                ->whereNotNull('ended_at')
+                ->selectRaw('AVG(ended_at - started_at) as avg_time')
+                ->value('avg_time');
+    }
 }
