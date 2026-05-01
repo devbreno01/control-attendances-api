@@ -62,11 +62,11 @@ class TicketService{
     }
 
     public function update(int $id, TicketDto $dto){
+
         return self::repository()->update($id, [
             "title" => $dto->title,
             "description" => $dto->description,
             "priority_id" => $dto->priority_id,
-            "status_id" => $dto->status_id,
             "sector_id" => $dto->sector_id
         ]);
     }

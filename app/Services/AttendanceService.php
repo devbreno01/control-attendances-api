@@ -151,7 +151,7 @@ class AttendanceService
             ]);
 
             $this->createEvent($attendance->id, 'finish');
-
+            
             return $attendance;
         });
     }
@@ -176,7 +176,7 @@ class AttendanceService
     }
 
     public function getAvgTime(){
-        return self::repository()->getAvgTime(); 
+        return self::repository()->getAvgTime();
     }
 
     private function getStatusId(string $statusName): int
